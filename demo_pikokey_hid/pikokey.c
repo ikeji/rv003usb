@@ -5,60 +5,119 @@
 #include "help_functions.h"
 // ./minichlink -D to use nrst, also PD1 needs pullup 
 
+const uint8_t ncols = 6;
+const uint8_t cols[] = {
+  PC1,
+  PC2,
+  PC0,
+  PC3,
+  PD1,
+  PC5,
+};
+
+const uint8_t nrows = 4;
+const uint8_t rows[] = {
+  PC6,
+  PC7,
+  PD0,
+  PA2,
+};
+
+char queue[10];
+volatile int qp = 0;
+const unsigned char i2k[] = {
+  HID_KEY_0, 
+  HID_KEY_1, 
+  HID_KEY_2, 
+  HID_KEY_3, 
+  HID_KEY_4, 
+  HID_KEY_5, 
+  HID_KEY_6, 
+  HID_KEY_7, 
+  HID_KEY_8, 
+  HID_KEY_9, 
+  HID_KEY_A, 
+  HID_KEY_B, 
+  HID_KEY_C, 
+  HID_KEY_D, 
+  HID_KEY_E, 
+  HID_KEY_F, 
+};
+
 int main()
 {
-	SystemInit();
-	Delay_Ms(1); // Ensures USB re-enumeration after bootloader or reset; Spec demand >2.5µs ( TDDIS )
-	systick_init();
-	GPIO_Init_All();
-    ButtonMatrix_Init(&btn_matrix); // Initialize button matrix state
-    Debounce_Init(&debounce_info); // Initialize debounce info
-	// printf( "Start\n");
+  SystemInit();
+  Delay_Ms(1); // Ensures USB re-enumeration after bootloader or reset; Spec demand >2.5µs ( TDDIS )
+  systick_init();
 
-	usb_setup();
-	while(1)
-	{
-#if RV003USB_EVENT_DEBUGGING
-		uint32_t * ue = GetUEvent();
-		if( ue )
-		{
-			printf( "%lu %lx %lx %lx\n", ue[0], ue[1], ue[2], ue[3] );
-		}
-#endif
-        uint32_t current_time = GetSystemTime();
+  funGpioInitAll();
+  for (int i=0;i<nrows;i++){
+    funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
+    funDigitalWrite(rows[i], FUN_HIGH);
+  }
+  for (int i=0;i<ncols;i++){
+    funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
+    funDigitalWrite(cols[i], FUN_HIGH);
+  }
 
-        // Scan the button matrix with debouncing
-        ButtonMatrix_Scan_Debounced(&btn_matrix, &debounce_info, current_time);
-        Delay_Ms(10);
+  usb_setup();
 
-	}
+  while(1){
+    Delay_Ms(100);
+    for (int i=0;i<nrows;i++){
+      funPinMode(rows[i], GPIO_CFGLR_OUT_10Mhz_PP);
+      funDigitalWrite(rows[i], FUN_LOW);
+      Delay_Us(1);
+      for (int j=0;j<ncols;j++){
+        if (funDigitalRead(cols[j]) == FUN_LOW) {
+          queue[0] = HID_KEY_0;
+          queue[1] = i2k[i];
+          queue[2] = i2k[j];
+          queue[3] = HID_KEY_SPACE;
+          queue[4] = 0;
+          qp=0;
+        }
+      }
+      funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
+      funDigitalWrite(rows[i], FUN_HIGH);
+    }
+    for (int i=0;i<ncols;i++){
+      funPinMode(cols[i], GPIO_CFGLR_OUT_10Mhz_PP);
+      funDigitalWrite(cols[i], FUN_LOW);
+      Delay_Us(1);
+      for (int j=0;j<nrows;j++){
+        if (funDigitalRead(rows[j]) == FUN_LOW) {
+          queue[0] = HID_KEY_1;
+          queue[1] = i2k[i];
+          queue[2] = i2k[j];
+          queue[3] = HID_KEY_SPACE;
+          queue[4] = 0;
+          qp=0;
+        }
+      }
+      funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
+      funDigitalWrite(cols[i], FUN_HIGH);
+    }
+  }
 }
-int i=0;
-uint8_t tsajoystick[8] = { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };
 
 void usb_handle_user_in_request( struct usb_endpoint * e, uint8_t * scratchpad, int endp, uint32_t sendtok, struct rv003usb_internal * ist )
 {
-	if( endp == 1 )
-	{
-		i++;
-		if(keypressed[0] == 1){
-			tsajoystick[0] = keypressed[1];
-			for(uint8_t k=0;k<6;k++){
-				tsajoystick[2+k] = keypressed[2+k];
-				keypressed[2+k]=0;
-			}
-			keypressed[1] = 0;
-			keypressed[0] = 0;
-		}
-		usb_send_data( tsajoystick, 8, 0, sendtok );
-		for(uint8_t k=0;k<8;k++){
-			tsajoystick[k] = 0;
-		}
-		}
-	else
-	{
-		usb_send_empty( sendtok );
-	}
+  if( endp == 1 )
+  {
+    uint8_t key_report[8] = { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };
+    if (qp%2 == 0) {
+      key_report[2] = queue[qp/2];
+    }
+    usb_send_data( key_report, 8, 0, sendtok );
+    if (queue[qp/2] != 0) {
+      qp++;
+    }
+  }
+  else
+  {
+    usb_send_empty( sendtok );
+  }
 }
 
 
