@@ -14,6 +14,22 @@ const uint8_t cols[] = {
   PD1,
   PC5,
 };
+const uint8_t cols_port[] = {
+  GPIO_port_C,
+  GPIO_port_C,
+  GPIO_port_C,
+  GPIO_port_C,
+  GPIO_port_D,
+  GPIO_port_C,
+};
+const uint8_t cols_pin[] = {
+  1,
+  2,
+  0,
+  3,
+  1,
+  5,
+};
 
 const uint8_t nrows = 4;
 const uint8_t rows[] = {
@@ -21,6 +37,18 @@ const uint8_t rows[] = {
   PC7,
   PD0,
   PA2,
+};
+const uint8_t rows_port[] = {
+  GPIO_port_C,
+  GPIO_port_C,
+  GPIO_port_D,
+  GPIO_port_A,
+};
+const uint8_t rows_pin[] = {
+  6,
+  7,
+  0,
+  2,
 };
 
 char queue[10];
@@ -50,14 +78,23 @@ int main()
   Delay_Ms(1); // Ensures USB re-enumeration after bootloader or reset; Spec demand >2.5µs ( TDDIS )
   systick_init();
 
-  funGpioInitAll();
+  GPIO_port_enable(GPIO_port_A);
+  GPIO_port_enable(GPIO_port_C);
+  GPIO_port_enable(GPIO_port_D);
+  // funGpioInitAll();
   for (int i=0;i<nrows;i++){
-    funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
-    funDigitalWrite(rows[i], FUN_HIGH);
+    GPIO_pinMode(
+        GPIOv_from_PORT_PIN(rows_port[i], rows_pin[i]),
+        GPIO_pinMode_I_pullUp, GPIO_Speed_In);
+    // funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
+    // funDigitalWrite(rows[i], FUN_HIGH);
   }
   for (int i=0;i<ncols;i++){
-    funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
-    funDigitalWrite(cols[i], FUN_HIGH);
+    GPIO_pinMode(
+        GPIOv_from_PORT_PIN(cols_port[i], cols_pin[i]),
+        GPIO_pinMode_I_pullUp, GPIO_Speed_In);
+    // funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
+    // funDigitalWrite(cols[i], FUN_HIGH);
   }
 
   usb_setup();
@@ -65,11 +102,20 @@ int main()
   while(1){
     Delay_Ms(100);
     for (int i=0;i<nrows;i++){
-      funPinMode(rows[i], GPIO_CFGLR_OUT_10Mhz_PP);
-      funDigitalWrite(rows[i], FUN_LOW);
+      GPIO_pinMode(
+          GPIOv_from_PORT_PIN(rows_port[i], rows_pin[i]),
+          GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
+      GPIO_digitalWrite(
+          GPIOv_from_PORT_PIN(rows_port[i], rows_pin[i]),
+          low);
+      // funPinMode(rows[i], GPIO_CFGLR_OUT_10Mhz_PP);
+      // funDigitalWrite(rows[i], FUN_LOW);
       Delay_Us(1);
       for (int j=0;j<ncols;j++){
-        if (funDigitalRead(cols[j]) == FUN_LOW) {
+        if (!GPIO_digitalRead(
+              GPIOv_from_PORT_PIN(
+                cols_port[j], cols_pin[j]))) {
+        // if (funDigitalRead(cols[j]) == FUN_LOW) {
           queue[0] = HID_KEY_0;
           queue[1] = i2k[i];
           queue[2] = i2k[j];
@@ -78,15 +124,27 @@ int main()
           qp=0;
         }
       }
-      funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
-      funDigitalWrite(rows[i], FUN_HIGH);
+      GPIO_pinMode(
+          GPIOv_from_PORT_PIN(rows_port[i], rows_pin[i]),
+          GPIO_pinMode_I_pullUp, GPIO_Speed_In);
+      // funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
+      // funDigitalWrite(rows[i], FUN_HIGH);
     }
     for (int i=0;i<ncols;i++){
-      funPinMode(cols[i], GPIO_CFGLR_OUT_10Mhz_PP);
-      funDigitalWrite(cols[i], FUN_LOW);
+      GPIO_pinMode(
+          GPIOv_from_PORT_PIN(cols_port[i], cols_pin[i]),
+          GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
+      GPIO_digitalWrite(
+          GPIOv_from_PORT_PIN(cols_port[i], cols_pin[i]),
+          low);
+      // funPinMode(cols[i], GPIO_CFGLR_OUT_10Mhz_PP);
+      // funDigitalWrite(cols[i], FUN_LOW);
       Delay_Us(1);
       for (int j=0;j<nrows;j++){
-        if (funDigitalRead(rows[j]) == FUN_LOW) {
+        if (!GPIO_digitalRead(
+              GPIOv_from_PORT_PIN(
+                rows_port[j], rows_pin[j]))) {
+        // if (funDigitalRead(rows[j]) == FUN_LOW) {
           queue[0] = HID_KEY_1;
           queue[1] = i2k[i];
           queue[2] = i2k[j];
@@ -95,8 +153,11 @@ int main()
           qp=0;
         }
       }
-      funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
-      funDigitalWrite(cols[i], FUN_HIGH);
+      GPIO_pinMode(
+          GPIOv_from_PORT_PIN(cols_port[i], cols_pin[i]),
+          GPIO_pinMode_I_pullUp, GPIO_Speed_In);
+      // funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
+      // funDigitalWrite(cols[i], FUN_HIGH);
     }
   }
 }
