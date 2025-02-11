@@ -5,8 +5,25 @@
 #include "help_functions.h"
 // ./minichlink -D to use nrst, also PD1 needs pullup 
 
+const uint8_t ncols = 6;
+const uint8_t cols[] = {
+  PC1,
+  PC2,
+  PC0,
+  PC3,
+  PD1,
+  PC5,
+};
 
-volatile char queue[10];
+const uint8_t nrows = 4;
+const uint8_t rows[] = {
+  PC6,
+  PC7,
+  PD0,
+  PA2,
+};
+
+char queue[10];
 volatile int qp = 0;
 const unsigned char i2k[] = {
   HID_KEY_0, 
@@ -34,28 +51,53 @@ int main()
   systick_init();
 
   funGpioInitAll();
-  funPinMode(PD1, GPIO_CFGLR_IN_PUPD);
-  funDigitalWrite(PD1, FUN_HIGH);
-  funPinMode(PC7, GPIO_CFGLR_IN_PUPD);
-  funDigitalWrite(PC7, FUN_HIGH);
+  for (int i=0;i<nrows;i++){
+    funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
+    funDigitalWrite(rows[i], FUN_HIGH);
+  }
+  for (int i=0;i<ncols;i++){
+    funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
+    funDigitalWrite(cols[i], FUN_HIGH);
+  }
 
   usb_setup();
 
   while(1){
     Delay_Ms(100);
-    funPinMode(PD1, GPIO_CFGLR_OUT_10Mhz_PP);
-    funDigitalWrite(PD1, FUN_LOW);
-    Delay_Ms(100);
-    if (funDigitalRead(PC7) == FUN_LOW) {
-          queue[0] = HID_KEY_1;
-          queue[1] = i2k[3];
-          queue[2] = i2k[3];
+    for (int i=0;i<nrows;i++){
+      funPinMode(rows[i], GPIO_CFGLR_OUT_10Mhz_PP);
+      funDigitalWrite(rows[i], FUN_LOW);
+      Delay_Us(1);
+      for (int j=0;j<ncols;j++){
+        if (funDigitalRead(cols[j]) == FUN_LOW) {
+          queue[0] = HID_KEY_0;
+          queue[1] = i2k[i];
+          queue[2] = i2k[j];
           queue[3] = HID_KEY_SPACE;
           queue[4] = 0;
           qp=0;
+        }
+      }
+      funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
+      funDigitalWrite(rows[i], FUN_HIGH);
     }
-    funPinMode(PD1, GPIO_CFGLR_IN_PUPD);
-    funDigitalWrite(PD1, FUN_HIGH);
+    for (int i=0;i<ncols;i++){
+      funPinMode(cols[i], GPIO_CFGLR_OUT_10Mhz_PP);
+      funDigitalWrite(cols[i], FUN_LOW);
+      Delay_Us(1);
+      for (int j=0;j<nrows;j++){
+        if (funDigitalRead(rows[j]) == FUN_LOW) {
+          queue[0] = HID_KEY_1;
+          queue[1] = i2k[i];
+          queue[2] = i2k[j];
+          queue[3] = HID_KEY_SPACE;
+          queue[4] = 0;
+          qp=0;
+        }
+      }
+      funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
+      funDigitalWrite(cols[i], FUN_HIGH);
+    }
   }
 }
 
