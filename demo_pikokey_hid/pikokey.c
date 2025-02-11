@@ -34,8 +34,8 @@ int main()
   systick_init();
 
   funGpioInitAll();
-  funPinMode(PD1, GPIO_CFGLR_IN_PUPD);
-  funDigitalWrite(PD1, FUN_HIGH);
+  funPinMode(PD1, GPIO_CFGLR_OUT_10Mhz_PP);
+  funDigitalWrite(PD1, FUN_LOW);
   funPinMode(PC7, GPIO_CFGLR_IN_PUPD);
   funDigitalWrite(PC7, FUN_HIGH);
 
@@ -43,19 +43,17 @@ int main()
 
   while(1){
     Delay_Ms(100);
-    funPinMode(PD1, GPIO_CFGLR_OUT_10Mhz_PP);
-    funDigitalWrite(PD1, FUN_LOW);
-    Delay_Ms(100);
     if (funDigitalRead(PC7) == FUN_LOW) {
-          queue[0] = HID_KEY_1;
-          queue[1] = i2k[3];
-          queue[2] = i2k[3];
-          queue[3] = HID_KEY_SPACE;
-          queue[4] = 0;
-          qp=0;
+      // NOTE:
+      // This should triggered when connect PD1 to PC7. but not.
+      // This was triggered when connect PC7 to GND.
+      queue[0] = HID_KEY_1;
+      queue[1] = i2k[3];
+      queue[2] = i2k[3];
+      queue[3] = HID_KEY_SPACE;
+      queue[4] = 0;
+      qp=0;
     }
-    funPinMode(PD1, GPIO_CFGLR_IN_PUPD);
-    funDigitalWrite(PD1, FUN_HIGH);
   }
 }
 
