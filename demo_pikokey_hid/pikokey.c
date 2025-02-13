@@ -1,8 +1,14 @@
+// (lazy-make-configulation
+//   (task "default" ()
+//     "make"))
+
 #include "ch32fun.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include "rv003usb.h"
 #include "help_functions.h"
+#include "generate_report.h"
 // ./minichlink -D to use nrst, also PD1 needs pullup 
 
 const uint8_t ncols = 6;
@@ -23,32 +29,56 @@ const uint8_t rows[] = {
   PA2,
 };
 
-char queue[10];
-volatile int qp = 0;
-const unsigned char i2k[] = {
-  HID_KEY_0, 
-  HID_KEY_1, 
-  HID_KEY_2, 
-  HID_KEY_3, 
-  HID_KEY_4, 
-  HID_KEY_5, 
-  HID_KEY_6, 
-  HID_KEY_7, 
-  HID_KEY_8, 
-  HID_KEY_9, 
-  HID_KEY_A, 
-  HID_KEY_B, 
-  HID_KEY_C, 
-  HID_KEY_D, 
-  HID_KEY_E, 
-  HID_KEY_F, 
-};
+uint32_t lastChangeTime = 0;
+volatile uint8_t key_report[8] = { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };
+
+void scan_matrix() {
+  uint32_t now = GetSystemTime();
+  bool leaped = now < lastChangeTime;
+  bool debunceTime = lastChangeTime + 10 > now;
+  if (!leaped && debunceTime) return;
+
+  bool changed = false;
+  for (int i=0;i<nrows;i++){
+    funPinMode(rows[i], GPIO_CFGLR_OUT_10Mhz_PP);
+    funDigitalWrite(rows[i], FUN_LOW);
+    Delay_Us(1);
+    for (int j=0;j<ncols;j++){
+      bool state = funDigitalRead(cols[j]) == FUN_LOW;
+      if (state != matrix[i][j]) changed = true;
+      matrix[i][j] = state;
+    }
+    funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
+    funDigitalWrite(rows[i], FUN_HIGH);
+  }
+  for (int i=0;i<ncols;i++){
+    funPinMode(cols[i], GPIO_CFGLR_OUT_10Mhz_PP);
+    funDigitalWrite(cols[i], FUN_LOW);
+    Delay_Us(1);
+    for (int j=0;j<nrows;j++){
+      bool state = funDigitalRead(rows[j]) == FUN_LOW;
+      if (state != matrix[j][11-i]) changed = true;
+      matrix[j][11-i] = state;
+    }
+    funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
+    funDigitalWrite(cols[i], FUN_HIGH);
+  }
+  if (changed) {
+    lastChangeTime = now;
+  }
+}
 
 int main()
 {
   SystemInit();
   Delay_Ms(1); // Ensures USB re-enumeration after bootloader or reset; Spec demand >2.5µs ( TDDIS )
   systick_init();
+
+  // Enable GPIOs
+  RCC->APB2PCENR |= RCC_APB2Periph_GPIOD | RCC_APB2Periph_GPIOC | RCC_AFIOEN;
+  // Convert PD1 from SWIO to GPIO
+  AFIO->PCFR1 &= ~(AFIO_PCFR1_SWJ_CFG);
+  AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_DISABLE;
 
   funGpioInitAll();
   for (int i=0;i<nrows;i++){
@@ -63,55 +93,24 @@ int main()
   usb_setup();
 
   while(1){
-    Delay_Ms(100);
-    for (int i=0;i<nrows;i++){
-      funPinMode(rows[i], GPIO_CFGLR_OUT_10Mhz_PP);
-      funDigitalWrite(rows[i], FUN_LOW);
-      Delay_Us(1);
-      for (int j=0;j<ncols;j++){
-        if (funDigitalRead(cols[j]) == FUN_LOW) {
-          queue[0] = HID_KEY_0;
-          queue[1] = i2k[i];
-          queue[2] = i2k[j];
-          queue[3] = HID_KEY_SPACE;
-          queue[4] = 0;
-          qp=0;
-        }
-      }
-      funPinMode(rows[i], GPIO_CFGLR_IN_PUPD);
-      funDigitalWrite(rows[i], FUN_HIGH);
-    }
-    for (int i=0;i<ncols;i++){
-      funPinMode(cols[i], GPIO_CFGLR_OUT_10Mhz_PP);
-      funDigitalWrite(cols[i], FUN_LOW);
-      Delay_Us(1);
-      for (int j=0;j<nrows;j++){
-        if (funDigitalRead(rows[j]) == FUN_LOW) {
-          queue[0] = HID_KEY_1;
-          queue[1] = i2k[i];
-          queue[2] = i2k[j];
-          queue[3] = HID_KEY_SPACE;
-          queue[4] = 0;
-          qp=0;
-        }
-      }
-      funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
-      funDigitalWrite(cols[i], FUN_HIGH);
-    }
+    scan_matrix();
+    generate_report();
   }
 }
+
+uint8_t previous_report[8] = { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };
 
 void usb_handle_user_in_request( struct usb_endpoint * e, uint8_t * scratchpad, int endp, uint32_t sendtok, struct rv003usb_internal * ist )
 {
   if( endp == 1 )
   {
-    uint8_t key_report[8] = { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };
-    if (qp%2 == 0) {
-      key_report[2] = queue[qp/2];
+    bool changed = false;
+    for (int i=0;i<8;i++) {
+      if (key_report[i] != previous_report[i]) changed = true;
+      previous_report[i] = key_report[i];
     }
-    usb_send_data( key_report, 8, 0, sendtok );
-    if (queue[qp/2] != 0) {
-      qp++;
+    if (changed) {
+      usb_send_data( key_report, 8, 0, sendtok );
     }
   }
   else
@@ -119,5 +118,3 @@ void usb_handle_user_in_request( struct usb_endpoint * e, uint8_t * scratchpad, 
     usb_send_empty( sendtok );
   }
 }
-
-
