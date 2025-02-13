@@ -30,13 +30,12 @@ const uint8_t rows[] = {
 };
 
 uint32_t lastChangeTime = 0;
-volatile uint8_t key_report[8] = { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };
 
 void scan_matrix() {
-  uint32_t now = GetSystemTime();
-  bool leaped = now < lastChangeTime;
-  bool debunceTime = lastChangeTime + 10 > now;
-  if (!leaped && debunceTime) return;
+  // uint32_t now = GetSystemTime();
+  // bool leaped = now < lastChangeTime;
+  // bool debunceTime = lastChangeTime + 10 > now;
+  // if (!leaped && debunceTime) return;
 
   bool changed = false;
   for (int i=0;i<nrows;i++){
@@ -63,9 +62,9 @@ void scan_matrix() {
     funPinMode(cols[i], GPIO_CFGLR_IN_PUPD);
     funDigitalWrite(cols[i], FUN_HIGH);
   }
-  if (changed) {
-    lastChangeTime = now;
-  }
+  // if (changed) {
+  //   lastChangeTime = now;
+  // }
 }
 
 int main()
@@ -93,6 +92,7 @@ int main()
   usb_setup();
 
   while(1){
+    Delay_Ms(10);
     scan_matrix();
     generate_report();
   }
@@ -104,14 +104,15 @@ void usb_handle_user_in_request( struct usb_endpoint * e, uint8_t * scratchpad, 
 {
   if( endp == 1 )
   {
-    bool changed = false;
+    // bool changed = false;
     for (int i=0;i<8;i++) {
-      if (key_report[i] != previous_report[i]) changed = true;
+      // if (key_report[i] != previous_report[i]) changed = true;
       previous_report[i] = key_report[i];
     }
-    if (changed) {
-      usb_send_data( key_report, 8, 0, sendtok );
-    }
+    // if (changed) {
+    //   usb_send_data(previous_report, 8, 0, sendtok );
+    // }
+    usb_send_data(previous_report, 8, 0, sendtok );
   }
   else
   {

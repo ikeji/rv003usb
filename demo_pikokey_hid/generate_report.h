@@ -91,23 +91,7 @@ const uint8_t ___ = 0x70 + 0;
 const uint8_t FN_ = 0x70 + 1;
 const uint8_t SYM = 0x70 + 2;
 const uint8_t NUM = 0x70 + 3;
-const uint8_t TLD = 0x70 + 4;  // ~
-const uint8_t EXL = 0x70 + 5;  // !
-const uint8_t ATM = 0x70 + 6;  // @
-const uint8_t HSH = 0x70 + 7;  // #
-const uint8_t DLR = 0x70 + 8;  // $
-const uint8_t PER = 0x70 + 9;  // %
-const uint8_t CIR = 0x70 + 10;  // ^
-const uint8_t AMP = 0x70 + 11;  // &
-const uint8_t AST = 0x70 + 12;  // *
-const uint8_t LPR = 0x70 + 13;  // (
-const uint8_t RPR = 0x70 + 14;  // )
-const uint8_t UND = 0x70 + 15;  // _
-const uint8_t PLU = 0x70 + 16;  // +
-const uint8_t PIP = 0x70 + 17;  // |
-const uint8_t LBR = 0x70 + 18;  // {
-const uint8_t RBR = 0x70 + 19;  // }
-const uint8_t END_OF_CUSTOM_KEY = 0x70 + 19;
+const uint8_t END_OF_CUSTOM_KEY = 0x70 + 3;
 
 // const uint8_t = 0x;
 
@@ -120,24 +104,6 @@ uint8_t keymap[][12*4] = {
     SFT,K_Z,K_X,K_C,K_V,K_B,K_N,K_M,CON,DOT,SLA,ENT,
     FN_,ALT,CTL,GUI,SYM,SPC,SPC,NUM,GUI,GUI,ALT,FN_
   },
-  // SYM
-  {
-    //~ !   @   #   $   %   ^   &   *   (   )
-    TLD,EXL,ATM,HSH,DLR,PER,CIR,AMP,AST,LPR,RPR,___,
-    //                          _   +   [   ]   |
-    ___,___,___,___,___,___,___,UND,PLU,LPN,RPN,PIP,
-    ___,___,___,___,___,___,___,___,___,___,___,___,
-    ___,___,___,___,___,___,___,___,___,___,___,___
-  },
-  // NUM
-  {
-    //` 1   2   3   4   5   6   7   8   9   0
-    GRV,K_1,K_2,K_3,K_4,K_5,K_6,K_7,K_8,K_9,K_0,___,
-    //                          -   =   {   }   back slash
-    ___,___,___,___,___,___,___,MIN,EQL,LBR,RBR,BSL,
-    ___,___,___,___,___,___,___,___,___,___,___,___,
-    ___,___,___,___,___,___,___,___,___,___,___,___
-  },
   // FN
   {
     // 
@@ -146,13 +112,60 @@ uint8_t keymap[][12*4] = {
     ___,___,___,___,___,___,___,___,___,___,PDN,END,
     ___,___,___,___,___,___,___,___,___,___,___,___
   },
+  // NUM
+  {
+    //` 1   2   3   4   5   6   7   8   9   0
+    GRV,K_1,K_2,K_3,K_4,K_5,K_6,K_7,K_8,K_9,K_0,___,
+    //                          -   =   [   ]   back slash
+    ___,___,___,___,___,___,___,MIN,EQL,LPN,RPN,BSL,
+    ___,___,___,___,___,___,___,___,___,___,___,___,
+    ___,___,___,___,___,___,___,___,___,___,___,___
+  },
 };
 
 bool matrix[4][12];
 volatile uint8_t key_report[8] = { 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };
 
 void generate_report() {
-  uint8_t pushed_keys[] = {0,0,0,0,0,0,0,0};
   uint8_t num_pushed_keys = 0;
+  for (int i=0;i<8;i++) {
+    key_report[i] = 0;
+  }
 
+  uint8_t layer = 0;
+  bool fn = matrix[3][0] || matrix[3][11];
+  bool num = matrix[3][7];
+  bool sym = matrix[3][4];
+  if (num || sym) {
+    layer = 2; // num or sym
+  }
+  if (fn) {
+    layer = 1; // fn
+  }
+  if (sym) {
+    key_report[0] |= 0b00000010;
+  }
+
+  for (int x = 0;x<12;x++) {
+    for (int y=0;y<4;y++) {
+      if (!matrix[y][x]) continue;
+      uint8_t kc = keymap[layer][x+y*12];
+      if (___ <= kc && kc <= END_OF_CUSTOM_KEY) {
+        // ignore custom key
+      } else if (kc == CTL) {
+        key_report[0] |= 0b00000001;
+      } else if (kc == SFT) {
+        key_report[0] |= 0b00000010;
+      } else if (kc == ALT) {
+        key_report[0] |= 0b00000100;
+      } else if (kc == GUI) {
+        key_report[0] |= 0b00001000;
+      } else {
+        // normal key
+        if (num_pushed_keys >= 6) continue;
+        key_report[2+num_pushed_keys] = kc;
+        num_pushed_keys++;
+      }
+    }
+  }
 }

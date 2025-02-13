@@ -1,69 +1,69 @@
 Archive member included to satisfy reference by file (symbol)
 
 ../ch32v003fun/ch32fun/../misc/libgcc.a(div.o)
-                              /tmp/ccJLx9SW.ltrans0.ltrans.o (__udivsi3)
+                              /tmp/ccwFNwUF.ltrans0.ltrans.o (__udivsi3)
 
 Discarded input sections
 
- .text          0x00000000        0x0 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .data          0x00000000        0x0 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .bss           0x00000000        0x0 /tmp/ccJLx9SW.ltrans0.ltrans.o
+ .text          0x00000000        0x0 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .data          0x00000000        0x0 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .bss           0x00000000        0x0 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.mini_pad
-                0x00000000       0xa0 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text._puts    0x00000000       0x40 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0xa0 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text._puts    0x00000000       0x40 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.mini_itoa.part.0
-                0x00000000       0xca /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0xca /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.__puts_uart
-                0x00000000       0x20 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strlen   0x00000000       0x12 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x20 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strlen   0x00000000       0x12 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.mini_vpprintf
-                0x00000000      0x1e0 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.printf   0x00000000       0x30 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.vprintf  0x00000000       0x16 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000      0x1e0 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.printf   0x00000000       0x30 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.vprintf  0x00000000       0x16 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.mini_vsnprintf
-                0x00000000       0x44 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x44 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.snprintf
-                0x00000000       0x1c /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.sprintf  0x00000000       0x28 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.memset   0x00000000       0x12 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strcpy   0x00000000       0x14 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strncpy  0x00000000       0x1c /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strcmp   0x00000000       0x1a /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strncmp  0x00000000       0x2e /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strchr   0x00000000       0x30 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strrchr  0x00000000       0x3c /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.memcpy   0x00000000       0x1c /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.memcmp   0x00000000       0x20 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.memmove  0x00000000       0x5e /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.memchr   0x00000000       0x1a /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strnlen  0x00000000       0x2a /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x1c /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.sprintf  0x00000000       0x28 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.memset   0x00000000       0x12 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strcpy   0x00000000       0x14 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strncpy  0x00000000       0x1c /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strcmp   0x00000000       0x1a /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strncmp  0x00000000       0x2e /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strchr   0x00000000       0x30 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strrchr  0x00000000       0x3c /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.memcpy   0x00000000       0x1c /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.memcmp   0x00000000       0x20 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.memmove  0x00000000       0x5e /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.memchr   0x00000000       0x1a /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strnlen  0x00000000       0x2a /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.twoway_strstr
-                0x00000000      0x23e /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.strstr   0x00000000      0x136 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000      0x23e /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.strstr   0x00000000      0x136 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .rodata.puts.str1.4
-                0x00000000        0x2 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.puts     0x00000000       0x40 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.setjmp   0x00000000       0x10 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .text.longjmp  0x00000000       0x14 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000        0x2 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.puts     0x00000000       0x40 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.setjmp   0x00000000       0x10 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .text.longjmp  0x00000000       0x14 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .data.APBAHBPrescTable.lto_priv.0
-                0x00000000       0x10 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x10 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .data.ADCPrescTable.lto_priv.0
-                0x00000000       0x14 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x14 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .data.APBAHBPrescTable.lto_priv.1
-                0x00000000       0x10 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x10 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .data.ADCPrescTable.lto_priv.1
-                0x00000000       0x14 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x14 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .data.APBAHBPrescTable.lto_priv.2
-                0x00000000       0x10 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x10 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .data.ADCPrescTable.lto_priv.2
-                0x00000000       0x14 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .comment       0x00000000       0x1f /tmp/ccJLx9SW.ltrans0.ltrans.o
- .comment       0x00000000       0x1f /tmp/cclbNP1n.debug.temp.o
- .comment       0x00000000       0x1f /tmp/ccX8bdAF.debug.temp.o
- .comment       0x00000000       0x1f /tmp/ccQl9k7j.debug.temp.o
- .text          0x00000000        0x0 /tmp/cc4goBPA.o
- .data          0x00000000        0x0 /tmp/cc4goBPA.o
- .bss           0x00000000        0x0 /tmp/cc4goBPA.o
+                0x00000000       0x14 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .comment       0x00000000       0x1f /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .comment       0x00000000       0x1f /tmp/cc68r4OH.debug.temp.o
+ .comment       0x00000000       0x1f /tmp/ccxpADHH.debug.temp.o
+ .comment       0x00000000       0x1f /tmp/ccHdE6QB.debug.temp.o
+ .text          0x00000000        0x0 /tmp/ccgq7DCg.o
+ .data          0x00000000        0x0 /tmp/ccgq7DCg.o
+ .bss           0x00000000        0x0 /tmp/ccgq7DCg.o
  .text          0x00000000       0x80 ../ch32v003fun/ch32fun/../misc/libgcc.a(div.o)
  .data          0x00000000        0x0 ../ch32v003fun/ch32fun/../misc/libgcc.a(div.o)
  .bss           0x00000000        0x0 ../ch32v003fun/ch32fun/../misc/libgcc.a(div.o)
@@ -87,38 +87,38 @@ RAM              0x20000000         0x00000800         xrw
 
 Linker script and memory map
 
-LOAD /tmp/ccFgYX5B.o
-LOAD /tmp/ccJLx9SW.ltrans0.ltrans.o
-LOAD /tmp/cclbNP1n.debug.temp.o
-LOAD /tmp/ccX8bdAF.debug.temp.o
-LOAD /tmp/ccQl9k7j.debug.temp.o
-LOAD /tmp/ccIGR6fW.o
-LOAD /tmp/cc4goBPA.o
-LOAD /tmp/cc36TzGF.o
+LOAD /tmp/ccxnjpuL.o
+LOAD /tmp/ccwFNwUF.ltrans0.ltrans.o
+LOAD /tmp/cc68r4OH.debug.temp.o
+LOAD /tmp/ccxpADHH.debug.temp.o
+LOAD /tmp/ccHdE6QB.debug.temp.o
+LOAD /tmp/ccdWrF3D.o
+LOAD /tmp/ccgq7DCg.o
+LOAD /tmp/ccnvv4qu.o
 LOAD ../ch32v003fun/ch32fun/../misc/libgcc.a
 
 .init           0x00000000       0xa0
                 0x00000000                        _sinit = .
                 0x00000000                        . = ALIGN (0x4)
  *(SORT_NONE(.init))
- .init          0x00000000       0x9e /tmp/ccJLx9SW.ltrans0.ltrans.o
+ .init          0x00000000       0x9e /tmp/ccwFNwUF.ltrans0.ltrans.o
                 0x00000000                InterruptVectorDefault
                 0x00000000                InterruptVector
                 0x000000a0                        . = ALIGN (0x4)
  *fill*         0x0000009e        0x2 
                 0x000000a0                        _einit = .
 
-.text           0x000000a0      0xaf8
+.text           0x000000a0      0xc54
                 0x000000a0                        . = ALIGN (0x4)
  *(.text)
  *(.text.*)
  .text.DelaySysTick
-                0x000000a0       0x16 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x000000a0       0x16 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.handle_reset
-                0x000000b6       0x72 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x000000b6       0x72 /tmp/ccwFNwUF.ltrans0.ltrans.o
                 0x000000b6                handle_reset
  .text.vector_handler
-                0x00000128       0x10 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000128       0x10 /tmp/ccwFNwUF.ltrans0.ltrans.o
                 0x00000128                EXTI2_IRQHandler
                 0x00000128                TIM8_TRG_COM_IRQHandler
                 0x00000128                TIM8_CC_IRQHandler
@@ -236,61 +236,63 @@ LOAD ../ch32v003fun/ch32fun/../misc/libgcc.a
                 0x0000012a                NMI_Handler
                 0x0000012a                NMI_RCC_CSS_IRQHandler
  .text.SystemInit
-                0x00000138       0x48 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000138       0x48 /tmp/ccwFNwUF.ltrans0.ltrans.o
                 0x00000138                SystemInit
  .text.startup.main
-                0x00000180      0x300 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000180      0x3ee /tmp/ccwFNwUF.ltrans0.ltrans.o
                 0x00000180                main
  .text.SysTick_Handler
-                0x00000480       0x32 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x0000056e       0x32 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .text.usb_pid_handle_in
-                0x000004b2       0xf2 /tmp/ccJLx9SW.ltrans0.ltrans.o
-                0x000004b2                usb_pid_handle_in
+                0x000005a0       0xd0 /tmp/ccwFNwUF.ltrans0.ltrans.o
+                0x000005a0                usb_pid_handle_in
  .text.usb_pid_handle_data
-                0x000005a4       0xf2 /tmp/ccJLx9SW.ltrans0.ltrans.o
-                0x000005a4                usb_pid_handle_data
- *fill*         0x00000696        0x2 
+                0x00000670       0xf2 /tmp/ccwFNwUF.ltrans0.ltrans.o
+                0x00000670                usb_pid_handle_data
+ *fill*         0x00000762        0x2 
  .text.vector_handler
-                0x00000698      0x3fc /tmp/cc4goBPA.o
-                0x00000698                EXTI7_0_IRQHandler
-                0x00000954                usb_send_empty
-                0x00000962                usb_send_data
-                0x00000a90                always0
+                0x00000764      0x3fc /tmp/ccgq7DCg.o
+                0x00000764                EXTI7_0_IRQHandler
+                0x00000a20                usb_send_empty
+                0x00000a2e                usb_send_data
+                0x00000b5c                always0
  *(.rodata)
- .rodata        0x00000a94       0x38 /tmp/ccJLx9SW.ltrans0.ltrans.o
+ .rodata        0x00000b60       0x38 /tmp/ccwFNwUF.ltrans0.ltrans.o
  *(.rodata*)
  .rodata.keyboard_hid_desc
-                0x00000acc       0x3f /tmp/ccJLx9SW.ltrans0.ltrans.o
- *fill*         0x00000b0b        0x1 
+                0x00000b98       0x3f /tmp/ccwFNwUF.ltrans0.ltrans.o
+ *fill*         0x00000bd7        0x1 
  .rodata.config_descriptor
-                0x00000b0c       0x22 /tmp/ccJLx9SW.ltrans0.ltrans.o
- *fill*         0x00000b2e        0x2 
+                0x00000bd8       0x22 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ *fill*         0x00000bfa        0x2 
  .rodata.device_descriptor
-                0x00000b30       0x12 /tmp/ccJLx9SW.ltrans0.ltrans.o
- *fill*         0x00000b42        0x2 
+                0x00000bfc       0x12 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ *fill*         0x00000c0e        0x2 
  .rodata.descriptor_list
-                0x00000b44       0x54 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000c10       0x54 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .rodata.keymap
+                0x00000c64       0x90 /tmp/ccwFNwUF.ltrans0.ltrans.o
  *(.gnu.linkonce.t.*)
-                0x00000b98                        . = ALIGN (0x4)
+                0x00000cf4                        . = ALIGN (0x4)
 
-.fini           0x00000b98        0x0
+.fini           0x00000cf4        0x0
  *(SORT_NONE(.fini))
-                0x00000b98                        . = ALIGN (0x4)
+                0x00000cf4                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (_eitcm = .)
 
-.preinit_array  0x00000b98        0x0
+.preinit_array  0x00000cf4        0x0
                 [!provide]                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array)
                 [!provide]                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x00000b98        0x0
+.init_array     0x00000cf4        0x0
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
  *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x00000b98        0x0
+.fini_array     0x00000cf4        0x0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
  *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
@@ -310,15 +312,15 @@ LOAD ../ch32v003fun/ch32fun/../misc/libgcc.a
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
 
-.dalign         0x20000000        0x0 load address 0x00000b98
+.dalign         0x20000000        0x0 load address 0x00000cf4
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        PROVIDE (_data_vma = .)
 
-.dlalign        0x00000b98        0x0
-                0x00000b98                        . = ALIGN (0x4)
-                0x00000b98                        PROVIDE (_data_lma = .)
+.dlalign        0x00000cf4        0x0
+                0x00000cf4                        . = ALIGN (0x4)
+                0x00000cf4                        PROVIDE (_data_lma = .)
 
-.data           0x20000000        0xc load address 0x00000b98
+.data           0x20000000        0xc load address 0x00000cf4
                 0x20000000                        . = ALIGN (0x4)
  *(.gnu.linkonce.r.*)
  *(.data .data.*)
@@ -334,38 +336,36 @@ LOAD ../ch32v003fun/ch32fun/../misc/libgcc.a
  *(.srodata.cst4)
  *(.srodata.cst2)
  *(.srodata .srodata.*)
- .srodata.cols  0x20000000        0x6 /tmp/ccJLx9SW.ltrans0.ltrans.o
+ .srodata.cols  0x20000000        0x6 /tmp/ccwFNwUF.ltrans0.ltrans.o
  *fill*         0x20000006        0x2 
- .srodata.rows  0x20000008        0x4 /tmp/ccJLx9SW.ltrans0.ltrans.o
+ .srodata.rows  0x20000008        0x4 /tmp/ccwFNwUF.ltrans0.ltrans.o
                 0x2000000c                        . = ALIGN (0x4)
                 0x2000000c                        PROVIDE (_edata = .)
 
-.rela.dyn       0x2000000c        0x0 load address 0x00000ba4
+.rela.dyn       0x2000000c        0x0 load address 0x00000d00
  .rela.text.handle_reset
-                0x2000000c        0x0 /tmp/cc4goBPA.o
+                0x2000000c        0x0 /tmp/ccgq7DCg.o
 
-.bss            0x2000000c       0xa4 load address 0x00000ba4
+.bss            0x2000000c       0xa0 load address 0x00000d00
                 0x2000000c                        . = ALIGN (0x4)
                 0x2000000c                        PROVIDE (_sbss = .)
  *(.sbss*)
  .sbss.previous_report
-                0x2000000c        0x8 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x2000000c        0x8 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .sbss.key_report
-                0x20000014        0x8 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .sbss.lastChangeTime
-                0x2000001c        0x4 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x20000014        0x8 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .sbss.SysTick_Count
-                0x20000020        0x4 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x2000001c        0x4 /tmp/ccwFNwUF.ltrans0.ltrans.o
  *(.gnu.linkonce.sb.*)
  *(.bss*)
  .bss.rv003usb_internal_data
-                0x20000024       0x5c /tmp/ccJLx9SW.ltrans0.ltrans.o
-                0x20000024                rv003usb_internal_data
- .bss.matrix    0x20000080       0x30 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x20000020       0x5c /tmp/ccwFNwUF.ltrans0.ltrans.o
+                0x20000020                rv003usb_internal_data
+ .bss.matrix    0x2000007c       0x30 /tmp/ccwFNwUF.ltrans0.ltrans.o
  *(.gnu.linkonce.b.*)
  *(COMMON*)
-                0x200000b0                        . = ALIGN (0x4)
-                0x200000b0                        PROVIDE (_ebss = .)
+                0x200000ac                        . = ALIGN (0x4)
+                0x200000ac                        PROVIDE (_ebss = .)
                 [!provide]                        PROVIDE (_end = _ebss)
                 [!provide]                        PROVIDE (end = .)
                 0x20000800                        PROVIDE (_eusrstack = (ORIGIN (RAM) + LENGTH (RAM)))
@@ -381,77 +381,77 @@ OUTPUT(pikokey.elf elf32-littleriscv)
 .riscv.attributes
                 0x00000000       0x2e
  .riscv.attributes
-                0x00000000       0x2e /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000       0x2e /tmp/ccwFNwUF.ltrans0.ltrans.o
  .riscv.attributes
-                0x0000002e       0x23 /tmp/cc4goBPA.o
+                0x0000002e       0x23 /tmp/ccgq7DCg.o
 
-.debug_info     0x00000000     0x3c09
- .debug_info    0x00000000     0x1222 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .debug_info    0x00001222      0xe60 /tmp/cclbNP1n.debug.temp.o
-                0x00001222                ch32fun.c.17f1f699
- .debug_info    0x00002082      0xda4 /tmp/ccX8bdAF.debug.temp.o
-                0x00002082                pikokey.c.29bf8279
- .debug_info    0x00002e26      0xdbe /tmp/ccQl9k7j.debug.temp.o
-                0x00002e26                rv003usb.c.4b30943f
- .debug_info    0x00003be4       0x25 /tmp/cc4goBPA.o
+.debug_info     0x00000000     0x3bee
+ .debug_info    0x00000000     0x1279 /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .debug_info    0x00001279      0xe60 /tmp/cc68r4OH.debug.temp.o
+                0x00001279                ch32fun.c.17f1f699
+ .debug_info    0x000020d9      0xd32 /tmp/ccxpADHH.debug.temp.o
+                0x000020d9                pikokey.c.e89962c7
+ .debug_info    0x00002e0b      0xdbe /tmp/ccHdE6QB.debug.temp.o
+                0x00002e0b                rv003usb.c.4b30943f
+ .debug_info    0x00003bc9       0x25 /tmp/ccgq7DCg.o
 
-.debug_abbrev   0x00000000      0x909
- .debug_abbrev  0x00000000      0x1ae /tmp/ccJLx9SW.ltrans0.ltrans.o
- .debug_abbrev  0x000001ae      0x251 /tmp/cclbNP1n.debug.temp.o
- .debug_abbrev  0x000003ff      0x2a4 /tmp/ccX8bdAF.debug.temp.o
- .debug_abbrev  0x000006a3      0x252 /tmp/ccQl9k7j.debug.temp.o
- .debug_abbrev  0x000008f5       0x14 /tmp/cc4goBPA.o
+.debug_abbrev   0x00000000      0x8f6
+ .debug_abbrev  0x00000000      0x19c /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .debug_abbrev  0x0000019c      0x251 /tmp/cc68r4OH.debug.temp.o
+ .debug_abbrev  0x000003ed      0x2a3 /tmp/ccxpADHH.debug.temp.o
+ .debug_abbrev  0x00000690      0x252 /tmp/ccHdE6QB.debug.temp.o
+ .debug_abbrev  0x000008e2       0x14 /tmp/ccgq7DCg.o
 
 .debug_loclists
-                0x00000000     0x2185
+                0x00000000     0x22d7
  .debug_loclists
-                0x00000000     0x2185 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000     0x22d7 /tmp/ccwFNwUF.ltrans0.ltrans.o
 
 .debug_aranges  0x00000000      0x168
  .debug_aranges
-                0x00000000      0x148 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000      0x148 /tmp/ccwFNwUF.ltrans0.ltrans.o
  .debug_aranges
-                0x00000148       0x20 /tmp/cc4goBPA.o
+                0x00000148       0x20 /tmp/ccgq7DCg.o
 
 .debug_rnglists
-                0x00000000      0x313
+                0x00000000      0x39d
  .debug_rnglists
-                0x00000000      0x313 /tmp/ccJLx9SW.ltrans0.ltrans.o
+                0x00000000      0x39d /tmp/ccwFNwUF.ltrans0.ltrans.o
 
-.debug_line     0x00000000     0x34aa
- .debug_line    0x00000000     0x2b37 /tmp/ccJLx9SW.ltrans0.ltrans.o
- .debug_line    0x00002b37       0x6d /tmp/cclbNP1n.debug.temp.o
- .debug_line    0x00002ba4       0x69 /tmp/ccX8bdAF.debug.temp.o
- .debug_line    0x00002c0d       0x6d /tmp/ccQl9k7j.debug.temp.o
- .debug_line    0x00002c7a      0x830 /tmp/cc4goBPA.o
+.debug_line     0x00000000     0x37df
+ .debug_line    0x00000000     0x2e6c /tmp/ccwFNwUF.ltrans0.ltrans.o
+ .debug_line    0x00002e6c       0x6d /tmp/cc68r4OH.debug.temp.o
+ .debug_line    0x00002ed9       0x69 /tmp/ccxpADHH.debug.temp.o
+ .debug_line    0x00002f42       0x6d /tmp/ccHdE6QB.debug.temp.o
+ .debug_line    0x00002faf      0x830 /tmp/ccgq7DCg.o
 
-.debug_str      0x00000000     0x1a05
- .debug_str     0x00000000      0x13c /tmp/ccJLx9SW.ltrans0.ltrans.o
+.debug_str      0x00000000     0x19f8
+ .debug_str     0x00000000      0x13c /tmp/ccwFNwUF.ltrans0.ltrans.o
                                 0x14a (size before relaxing)
- .debug_str     0x0000013c      0x4fe /tmp/cclbNP1n.debug.temp.o
+ .debug_str     0x0000013c      0x4fe /tmp/cc68r4OH.debug.temp.o
                                 0x5b4 (size before relaxing)
- .debug_str     0x0000063a      0x5cb /tmp/ccX8bdAF.debug.temp.o
-                                0x813 (size before relaxing)
- .debug_str     0x00000c05      0xdb3 /tmp/ccQl9k7j.debug.temp.o
+ .debug_str     0x0000063a      0x5be /tmp/ccxpADHH.debug.temp.o
+                                0x7fa (size before relaxing)
+ .debug_str     0x00000bf8      0xdb3 /tmp/ccHdE6QB.debug.temp.o
                                0x1379 (size before relaxing)
- .debug_str     0x000019b8       0x4d /tmp/cc4goBPA.o
+ .debug_str     0x000019ab       0x4d /tmp/ccgq7DCg.o
 
 .debug_line_str
                 0x00000000      0x1c6
  .debug_line_str
-                0x00000000       0x54 /tmp/ccJLx9SW.ltrans0.ltrans.o
-                                 0xd6 (size before relaxing)
+                0x00000000       0x66 /tmp/ccwFNwUF.ltrans0.ltrans.o
+                                 0xe8 (size before relaxing)
  .debug_line_str
-                0x00000054       0xdb /tmp/cclbNP1n.debug.temp.o
+                0x00000066       0xdb /tmp/cc68r4OH.debug.temp.o
                                 0x130 (size before relaxing)
  .debug_line_str
-                0x0000012f       0x1d /tmp/ccX8bdAF.debug.temp.o
+                0x00000141        0xb /tmp/ccxpADHH.debug.temp.o
                                  0xeb (size before relaxing)
  .debug_line_str
-                0x0000014c       0x39 /tmp/ccQl9k7j.debug.temp.o
+                0x0000014c       0x39 /tmp/ccHdE6QB.debug.temp.o
                                 0x102 (size before relaxing)
  .debug_line_str
-                0x00000185       0x41 /tmp/cc4goBPA.o
+                0x00000185       0x41 /tmp/ccgq7DCg.o
 
-.debug_frame    0x00000000      0x3d4
- .debug_frame   0x00000000      0x3d4 /tmp/ccJLx9SW.ltrans0.ltrans.o
+.debug_frame    0x00000000      0x3cc
+ .debug_frame   0x00000000      0x3cc /tmp/ccwFNwUF.ltrans0.ltrans.o
